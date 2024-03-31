@@ -62,3 +62,35 @@ def sum_vector(vectors: List[Vector]) -> Vector:
 
 result = add_vector([2,3], [4,4, 7])
 print(result)
+
+# Imports 
+import matplotlib.pyplot as plt 
+import numpy as np 
+import matplotlib.animation as animation
+
+TWOPI = 2*np.pi 
+
+fig, ax = plt.subplots()
+t = np.arange(0.0, TWOPI, 0.001)
+s = np.sin(t)
+i = plt.plot(t, s)
+
+ax = plt.axis([0, TWOPI, -1, 1])
+
+redDot, = plt.plot([0], [np.sin(i)], 'ro')
+
+def animate(i): 
+    redDot.set_data(i, np.sin(i))
+    return redDot
+
+# Now creating animations 
+myAnimation = animation.FuncAnimation(
+    fig,
+    animate,
+    frames = np.arange(0.0, TWOPI, 0.1),
+    interval=10,
+    blit=True,
+    repeat=True
+)
+
+plt.show()
